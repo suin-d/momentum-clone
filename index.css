@@ -1,0 +1,16 @@
+body{
+    background-color:thistle;
+}
+h1{
+    color:white;
+}
+
+.btn{
+    cursor: pointer;
+}
+
+.clicked{
+    color: midnightblue;
+}
+
+/* color클래스 */
