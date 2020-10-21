@@ -1,6 +1,5 @@
 
-/* 우리만의 객체 만들기! 
-math 객체 (object) 만들기 
+/* 우리만의 객체 만들기
 
 console.log()와 같이 calculator.plus()를 갖고싶어 
  */
