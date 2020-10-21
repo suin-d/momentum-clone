@@ -24,7 +24,6 @@ const calculator = {
 }
 
 
-// 더하기 곱하기 나누기 빼기 제곱근 
 const plus = calculator.plus(5, 5);
 const multifly = calculator.multifly(5, 5); 
 const minus = calculator.minus(5, 1);
