@@ -1,18 +1,21 @@
-const clockContainer = document.querySelector(".js-clock"), // js-clock이라는 class이름을 찾아줌 
+const clockContainer = document.querySelector(".js-clock"), // js-clock이라는 class이름 찾아줌
     clockTitle = clockContainer.querySelector("h1");
-// queryselector는 element의 자식을 탐색한다. 이 경우 clock class의 자식을 탐색하고 싶은 것. 
 
 function getTime(){
-    const date = new Date(); // 객체 
+    const date = new Date(); // just object 
     const minutes = date.getMinutes();
     const hours = date.getHours();
-    const seconds = date.getSeconds();// 작동하지만 새로고침을 해야! 
-    clockTitle.innerHTML = `${hours}:${minutes}:${seconds}`; 
-    // innerText 객체 안에 텍스트를 넣기 위해 
+    const seconds = date.getSeconds();
+    clockTitle.innerHTML = `${hours < 10? `0${hours}` : hours}:${minutes < 10? `0${minutes}` : minutes}:${seconds < 10? `0${seconds}` : seconds}`; 
+    // 작동하지만 매번 새로고침 필요
+    // innerText: 객체 안에 텍스트를 넣기 위해 
+    // 삼항연산자: 만약 초가 10보다 작으면 첫번째 리턴하고, 그렇지 않으면 초를 그대로 리턴할 것
 }
 
 function init(){
-    getTime();
+    getTime(); // 초기화 과정에서 먼저 시간 얻기 
+    setInterval(getTime, 1000); // setInterval{함수, 실행할시간간격};
 }
+
 
 init();
