@@ -13,4 +13,13 @@ h1{
     color: midnightblue;
 }
 
+.form,
+.greetings {
+    display: none;
+}
+
+.showing {
+    display: block;
+}
+
 /* color클래스 */
