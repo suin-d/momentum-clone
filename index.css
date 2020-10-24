@@ -1,25 +1,23 @@
-body{
-    background-color:thistle;
+body {
+  background-color: thistle;
 }
-h1{
-    color:white;
-}
-
-.btn{
-    cursor: pointer;
+body {
+  color: white;
 }
 
-.clicked{
-    color: midnightblue;
+.btn {
+  cursor: pointer;
+}
+
+.clicked {
+  color: midnightblue;
 }
 
 .form,
 .greetings {
-    display: none;
+  display: none;
 }
 
 .showing {
-    display: block;
+  display: block;
 }
-
-/* color클래스 */
