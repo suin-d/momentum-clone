@@ -6,8 +6,22 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = "toDos";
 
+function filterFn(toDo) {
+  //filter : array의 모든 아이템을 통해 함수를 실행하고, true인 아이템들만 가지고 새로운 array를 만듬
+  return toDo.id === 1; //id가 1일 경우만 return
+}
+
 const toDos = [];
 //해야할 일 생성 시, toDos array에 추가
+
+function deleteToDo(event) {
+  //  console.log(event.target.parentNode);
+  const btn = event.target;
+  const li = btn.parentNode; // 지워야할 li
+  toDoList.removeChild(li);
+  const cleanToDos = toDos.filter(filterFn);
+  console.log(cleanToDos);
+}
 
 function saveToDos() {
   // toDos를 가져와서 로컬에 저장
@@ -19,7 +33,8 @@ function paintToDo(text) {
   const delBtn = document.createElement("button"); // button 만들기
   const newId = toDos.length + 1;
   const span = document.createElement("span"); // span 만들기
-  delBtn.innerHTML = "❌";
+  delBtn.innerText = "❌";
+  delBtn.addEventListener("click", deleteToDo);
   span.innerText = text; // submit function에서 온 값
   li.appendChild(span); // appendChild: 무언가를 father element 안에 넣는 것
   li.appendChild(delBtn); // span & delBtn li 안에 넣기
