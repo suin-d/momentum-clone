@@ -6,15 +6,31 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = "toDos";
 
+const toDos = [];
+//해야할 일 생성 시, toDos array에 추가
+
+function saveToDos() {
+  // toDos를 가져와서 로컬에 저장
+  localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+}
+
 function paintToDo(text) {
   const li = document.createElement("li"); //empty li 만들기
   const delBtn = document.createElement("button"); // button 만들기
-  delBtn.innerHTML = "❌";
+  const newId = toDos.length + 1;
   const span = document.createElement("span"); // span 만들기
+  delBtn.innerHTML = "❌";
   span.innerText = text; // submit function에서 온 값
   li.appendChild(span); // appendChild: 무언가를 father element 안에 넣는 것
   li.appendChild(delBtn); // span & delBtn li 안에 넣기
+  li.id = newId; // id 추가: 버튼 클릭 시, 어떤 li 지워야 하는지 알 수 있게
   toDoList.appendChild(li);
+  const toDoObj = {
+    text: text,
+    id: newId,
+  };
+  toDos.push(toDoObj); // push를 써서, 'toDos' array안에 element 'toDoObj' 넣기
+  saveToDos(); //push한 이후 호출
 }
 
 function handleSubmit(event) {
@@ -25,8 +41,15 @@ function handleSubmit(event) {
 }
 
 function loadToDos() {
-  const toDos = localStorage.getItem(TODOS_LS);
-  if (toDos !== null) {
+  const loadedToDos = localStorage.getItem(TODOS_LS);
+  if (loadedToDos !== null) {
+    //  console.log(loadedToDos);
+    const parsedToDos = JSON.parse(loadedToDos);
+    //  console.log(parsedToDos);
+    parsedToDos.forEach(function (toDo) {
+      //  console.log(toDo.text);
+      paintToDo(toDo.text);
+    });
   }
 }
 
