@@ -11,7 +11,7 @@ function filterFn(toDo) {
   return toDo.id === 1; //id가 1일 경우만 return
 }
 
-const toDos = [];
+let toDos = [];
 //해야할 일 생성 시, toDos array에 추가
 
 function deleteToDo(event) {
@@ -19,8 +19,11 @@ function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode; // 지워야할 li
   toDoList.removeChild(li);
-  const cleanToDos = toDos.filter(filterFn);
-  console.log(cleanToDos);
+  const cleanToDos = toDos.filter(function (toDo) {
+    return toDo.id !== parseInt(li.id); // 모든 toDos가 li의 id와 같지 않을 때
+  });
+  toDos = cleanToDos; // toDos를 cleanToDos로 변경
+  saveToDos();
 }
 
 function saveToDos() {
