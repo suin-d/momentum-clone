@@ -24,6 +24,12 @@ function deleteToDo(event) {
   });
   toDos = cleanToDos; // toDos를 cleanToDos로 변경
   saveToDos();
+
+  let renewList = [];
+  cleanToDos.forEach(function (item) {
+    renewList.push({ text: item.text, id: renewList.length + 1 });
+  });
+  toDos = renewList;
 }
 
 function saveToDos() {
@@ -65,6 +71,7 @@ function loadToDos() {
     const parsedToDos = JSON.parse(loadedToDos);
     //  console.log(parsedToDos);
     parsedToDos.forEach(function (toDo) {
+      //만든 함수를 parseToDos에 담겨있는 객체들 각각에 대해 실행(각각을 toDo라 칭함)
       //  console.log(toDo.text);
       paintToDo(toDo.text);
     });
