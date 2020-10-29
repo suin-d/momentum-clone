@@ -1,4 +1,14 @@
+const API_KEY = "90d10f3bef0044dba835c0557fe001ff";
 const COORDS = "coords";
+// JS를 이용해서 특정 URL을 호출하는 방법
+// 웹사이트로 Request를 보내고 응답을 통해 데이터를 얻을 수 있는데, 가져온 데이터를 새로고침 없이 웹사이트에 적용 가능 => JS가 강력해진 이유
+
+function getWeather(lat, lng) {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`
+  );
+}
+// 데이터를 얻는 방법: fetch() 사용 *따옴표가 아닌 backtick(`) 사용해야
 
 function saveCoords(coordsObj) {
   localStorage.setItem(COORDS, JSON.stringify(coordsObj));
@@ -16,6 +26,7 @@ function handleGeoSucces(position) {
     longitude,
   };
   saveCoords(coordsObj);
+  getWeather(latitude, longitude);
 }
 
 function handleGeoError() {
@@ -30,11 +41,13 @@ function askForCoords() {
 }
 
 function loadCoords() {
-  const loadedCords = localStorage.getItem(COORDS);
-  if (loadedCords === null) {
+  const loadedCoords = localStorage.getItem(COORDS);
+  if (loadedCoords === null) {
     askForCoords();
   } else {
-    // getWeather
+    const parseCoords = JSON.parse(loadedCoords);
+    //console.log(parseCoords);
+    getWeather(parseCoords.latitude, parseCoords.longitude);
   }
 }
 
