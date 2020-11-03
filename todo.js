@@ -1,10 +1,10 @@
-const toDoForm = document.querySelector(".js-toDoForm"),
-  toDoInput = toDoForm.querySelector("input"),
-  toDoList = document.querySelector(".js-toDoList");
+const toDoForm = document.querySelector('.js-toDoForm'),
+  toDoInput = toDoForm.querySelector('input'),
+  toDoList = document.querySelector('.js-toDoList');
 //   Uncaught TypeError: Cannot read property 'appendChild' of null 오류 발생
 //   -> js-toDoList 앞에 . 안찍어서 ^^!
 
-const TODOS_LS = "toDos";
+const TODOS_LS = 'toDos';
 
 function filterFn(toDo) {
   //filter : array의 모든 아이템을 통해 함수를 실행하고, true인 아이템들만 가지고 새로운 array를 만듬
@@ -38,12 +38,12 @@ function saveToDos() {
 }
 
 function paintToDo(text) {
-  const li = document.createElement("li"); //empty li 만들기
-  const delBtn = document.createElement("button"); // button 만들기
+  const li = document.createElement('li'); //empty li 만들기
+  const delBtn = document.createElement('button'); // button 만들기
   const newId = toDos.length + 1;
-  const span = document.createElement("span"); // span 만들기
-  delBtn.innerText = "❌";
-  delBtn.addEventListener("click", deleteToDo);
+  const span = document.createElement('span'); // span 만들기
+  delBtn.innerText = '❌';
+  delBtn.addEventListener('click', deleteToDo);
   span.innerText = text; // submit function에서 온 값
   li.appendChild(span); // appendChild: 무언가를 father element 안에 넣는 것
   li.appendChild(delBtn); // span & delBtn li 안에 넣기
@@ -61,7 +61,7 @@ function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
   paintToDo(currentValue);
-  toDoInput.value = "";
+  toDoInput.value = '';
 }
 
 function loadToDos() {
@@ -80,7 +80,7 @@ function loadToDos() {
 
 function init() {
   loadToDos();
-  toDoForm.addEventListener("submit", handleSubmit);
+  toDoForm.addEventListener('submit', handleSubmit);
 }
 
 init();
