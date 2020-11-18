@@ -1,9 +1,9 @@
-const weather = document.querySelector(".js-weather");
+const weather = document.querySelector('.js-weather');
 
-const API_KEY = "90d10f3bef0044dba835c0557fe001ff";
+const API_KEY = '90d10f3bef0044dba835c0557fe001ff';
 // 날씨 API : https://home.openweathermap.org/api_keys
 // API: 다른 서버로부터 쉽게 데이터를 가져올 수 있는 수단
-const COORDS = "coords";
+const COORDS = 'coords';
 // JS를 이용해서 특정 URL을 호출하는 방법
 // 웹사이트로 Request를 보내고 응답을 통해 데이터를 얻을 수 있는데, 가져온 데이터를 새로고침 없이 웹사이트에 적용 가능 => JS가 강력해진 이유
 
@@ -18,9 +18,9 @@ function getWeather(lat, lng) {
     .then(function (json) {
       // JSON 데이터가 준비되면 Object 가져옴
       //console.log(json);
-      const temperature = json.main.temp;
+      const temperature = Math.floor(json.main.temp);
       const place = json.name;
-      weather.innerText = `${temperature} @ ${place}`;
+      weather.innerText = `${temperature} ℃ \n ${place}`;
     });
 }
 
@@ -44,7 +44,7 @@ function handleGeoSucces(position) {
 
 function handleGeoError() {
   // 좌표 가져오기 실패 시 실행 함수
-  console.log("Cant access geo location");
+  console.log('Cant access geo location');
 }
 
 function askForCoords() {
